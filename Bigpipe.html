@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BigPipe</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .pagelet {
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin: 20px;
+      padding: 20px;
+      color: #333;
+      background-color: #fff;
+      width: 350px;
+      text-align: center;
+    }
+
+    .pagelet1 { background-color: #8e44ad; color: #fff; } /* Purple */
+    .pagelet2 { background-color: #2479b2; color: #fff; } /* Blue */
+    .pagelet3 { background-color: #d93ce7; color: #fff; } /* Pink */
+    .pagelet4 { background-color: #83e73c; color: #fff; } /* green */
+  </style>
+</head>
+<body>
+  <div id="pagelet-container"></div>
+
+  <script>
+    function simulateServerDelay() {
+      return new Promise(resolve => setTimeout(resolve, 1500));
+    }
+
+    function renderPagelet(id, content, className) {
+      const container = document.getElementById('pagelet-container');
+      const pagelet = document.createElement('div');
+      pagelet.className = `pagelet ${className}`;
+      pagelet.id = id;
+      pagelet.innerHTML = content;
+      container.appendChild(pagelet);
+    }
+
+    async function loadPage() {
+      await simulateServerDelay();
+      renderPagelet('pagelet1', '<h2>Pagelet 1</h2><img src="https://www.pixelstalk.net/wp-content/uploads/2016/07/Wallpapers-pexels-photo.jpg" alt="Sample Image"style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">', 'pagelet1');
+      await simulateServerDelay();
+      renderPagelet('pagelet2', '<h2>Pagelet 2</h2><img src="https://live.staticflickr.com/3029/3072819987_b505d769bf_b.jpg" alt="Sample Image"style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">', 'pagelet2');
+      await simulateServerDelay();
+      renderPagelet('pagelet3', '<h2>Pagelet 3</h2><img src="https://s3-media4.fl.yelpcdn.com/bphoto/rq_WZJKqkHZckxCA_wTg6Q/o.jpg" alt="Sample Image"style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">', 'pagelet3');
+      await simulateServerDelay();
+      renderPagelet('pagelet4', '<h2>Pagelet 4</h2><img src="https://danielshawaii.com/wp-content/uploads/2021/03/mauna-loa.jpg" alt="Sample Image"style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">', 'pagelet4');
+    }
+
+    window.onload = loadPage;
+  </script>
+</body>
+</html>
